@@ -18,14 +18,14 @@ function Catalogo() {
         },
         {
           id: 2,
-          title: "Coringa",
+          title: "Everything Everywhere All At Once",
           description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, placeat maiores nihil quaerat mollitia officia?.",
           poster:
             "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/b49kjskouDOkgrfWkQjOvzcYbAU.jpg",
           rating: 9.0,
           year: 2003,
-          image: "./assets/image/6.png",
+          image: "https://play-lh.googleusercontent.com/TcSZz0mjvaAVqQDZXACMCb_JUNXPvDVhrh-THmwNJg-6Li6itvRgG-a-2zeclGf11mqS2bWSlALZMIoT_QdN=w480-h960-rw",
         },
         {
           id: 3,
@@ -42,7 +42,7 @@ function Catalogo() {
         // mais filmes aqui...
       ];
     return (
-        <div className='container'>            
+        <div className='conteudo'>            
             <CatalogoFilmes filmes={filmes} />   
         </div>
     )
