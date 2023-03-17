@@ -9,7 +9,7 @@ import Planos from "../../pages/planos";
 
 function Header() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <header class='navbar navbar-expand-lg border-bottom'>
         <nav class='container'>
           <a class='navbar-brand' href='#'>
