@@ -57,25 +57,28 @@ function Header() {
                       Pagamentos
                     </Link>
                   </li>
-                  <li>
-                    <hr class='dropdown-divider' />
-                  </li>
+                  
                   <li>
                     <Link className='dropdown-item' to='/editar'>
                       Editar
                     </Link>
                   </li>
+                  <li>
+                    <hr class='dropdown-divider' />
+                  </li>
+                  <li>
+                    <Link className='dropdown-item' to='logar'>
+                      Logar
+                    </Link>
+                  </li>
                 </ul>
+
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to=''>Cadastrar</Link>
               </li>
             </ul>
-            <div class='col-md-3 text-center'>
-              <button type='button' class='btn btn-outline-primary me-2'>
-                <Link className="nav-link" to='logar'>Logar</Link>
-              </button>
-              <button type='button' class='btn btn-primary'>
-                Cadastrar
-              </button>
-            </div>
+            
           </div>
         </nav>
       </header>
