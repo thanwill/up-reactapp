@@ -29,12 +29,12 @@ function Header() {
             <ul class='navbar-nav me-auto offset-4 mb-2 mb-lg-0'>
               <li class='nav-item'>
                 <Link className='nav-link' to='/'>
-                  Início
+                  início
                 </Link>
               </li>
               <li class='nav-item'>
                 <Link className='nav-link' to='/catalogo'>
-                  Catálogo
+                  catálogo
                 </Link>
               </li>
               <li class='nav-item dropdown'>
@@ -44,7 +44,7 @@ function Header() {
                   role='button'
                   data-bs-toggle='dropdown'
                   aria-expanded='false'>
-                  Perfil
+                  perfil
                 </a>
                 <ul class='dropdown-menu'>
                   <li>
@@ -67,18 +67,17 @@ function Header() {
                     <hr class='dropdown-divider' />
                   </li>
                   <li>
-                    <Link className='dropdown-item' to='logar'>
-                      Logar
+                    <Link className='dropdown-item' to='/cadastrar'>
+                      Cadastrar
                     </Link>
                   </li>
                 </ul>
 
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to=''>Cadastrar</Link>
+                <Link className="nav-link" to='/logar'>logar</Link>
               </li>
-            </ul>
-            
+            </ul>            
           </div>
         </nav>
       </header>
