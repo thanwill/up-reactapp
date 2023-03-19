@@ -3,7 +3,7 @@ import "./formulario.css";
 function FormsLogin() {
   const image = "https://cdn-icons-png.flaticon.com/512/9995/9995237.png";
   return (
-    <form className='col-10 offset-1 col-md-6 offset-md-3 pt-5 pb-5'>
+    <form className='form-login col-10 offset-1 col-md-4 offset-md-4 pt-5 pb-5'>
       <img class='mb-4' src={image} alt='' width='72' />
       <h1 class='h3 mb-3 fw-normal'>Faça login!</h1>
       <div class='form-floating'>

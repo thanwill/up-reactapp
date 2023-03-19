@@ -7,14 +7,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 .conteudo{
-  min-height: 50vh;
+  min-height: 60vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.formulario-login{
-  margin: 10vh auto;
-  height: 70vh;
-}
+
