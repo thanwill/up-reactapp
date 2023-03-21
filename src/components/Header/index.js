@@ -10,43 +10,43 @@ import Planos from "../../pages/planos";
 function Header() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
-      <header class='navbar navbar-expand-lg border-bottom'>
-        <nav class='container'>
-          <a class='navbar-brand' href='#'>
+      <header className='navbar navbar-expand-lg border-bottom'>
+        <nav className='container'>
+          <a className='navbar-brand' href='#'>
             iMoove
           </a>
           <button
-            class='navbar-toggler'
+            className='navbar-toggler'
             type='button'
             data-bs-toggle='collapse'
             data-bs-target='#navbarSupportedContent'
             aria-controls='navbarSupportedContent'
             aria-expanded='false'
             aria-label='Toggle navigation'>
-            <span class='navbar-toggler-icon'></span>
+            <span className='navbar-toggler-icon'></span>
           </button>
-          <div class='collapse navbar-collapse ' id='navbarSupportedContent'>
-            <ul class='navbar-nav me-auto offset-4 mb-2 mb-lg-0'>
-              <li class='nav-item'>
+          <div className='collapse navbar-collapse ' id='navbarSupportedContent'>
+            <ul className='navbar-nav me-auto offset-4 mb-2 mb-lg-0'>
+              <li className='nav-item'>
                 <Link className='nav-link' to='/'>
                   início
                 </Link>
               </li>
-              <li class='nav-item'>
+              <li className='nav-item'>
                 <Link className='nav-link' to='/catalogo'>
                   catálogo
                 </Link>
               </li>
-              <li class='nav-item dropdown'>
+              <li className='nav-item dropdown'>
                 <a
-                  class='nav-link dropdown-toggle'
+                  className='nav-link dropdown-toggle'
                   href='#'
                   role='button'
                   data-bs-toggle='dropdown'
                   aria-expanded='false'>
                   perfil
                 </a>
-                <ul class='dropdown-menu'>
+                <ul className='dropdown-menu'>
                   <li>
                     <Link className='dropdown-item' to='/planos'>
                       Planos
@@ -64,7 +64,7 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <hr class='dropdown-divider' />
+                    <hr className='dropdown-divider' />
                   </li>
                   <li>
                     <Link className='dropdown-item' to='/cadastrar'>

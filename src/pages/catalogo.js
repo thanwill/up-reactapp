@@ -1,5 +1,5 @@
 import React from 'react';
-import CatalogoFilmes from '../components/Filmes';
+import Filmes from '../components/Filmes';
 
 function Catalogo() {
     const filmes = [
@@ -43,7 +43,7 @@ function Catalogo() {
       ];
     return (
         <div className='conteudo'>            
-            <CatalogoFilmes filmes={filmes} />   
+            <Filmes props={filmes} />   
         </div>
     )
 }
