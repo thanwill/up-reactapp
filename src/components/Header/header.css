@@ -1,9 +1,9 @@
-.navegacao{
-    width: 100vw;
-    height: 10vh;
-    padding: 10px;
-    background-color: black;
-}
-a{
-    color: #fff !important; 
-}
+header{
+    margin: auto;
+    width: 90vw;
+    min-height: 15vh;
+    font-size: larger;
+  }
+  li{
+    margin: 0px 20px;
+  }
