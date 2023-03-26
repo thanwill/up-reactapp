@@ -24,7 +24,7 @@ function Modal({ filme }) {
               aria-label='Close'></button>
           </div>
           <div className='modal-body'>
-            <p className='col-md-10 offset-md-1 pt-5 pb-4'>
+            <p className='col-10 offset-1 col-md-10 offset-md-1 pt-5 pb-4'>
               {filme.description}
             </p>
             <table class='table table-striped'>
