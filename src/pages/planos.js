@@ -2,7 +2,10 @@ function Planos() {
   return(
     <main className="conteudo">
       <div className='row row-cols-1 row-cols-md-3 mb-3 text-center'>
-        <div className='col'>
+        <div className="col-10 offset-1 p-5">
+          <h1>Planos</h1>
+        </div>
+        <div className='col-10 offset-1'>
           <div className='card mb-4 rounded-3 shadow-sm'>
             <div className='card-header py-3'>
               <h4 className='my-0 fw-normal'>Free</h4>
@@ -25,7 +28,7 @@ function Planos() {
             </div>
           </div>
         </div>
-        <div className='col'>
+        <div className='col-10 offset-1'>
           <div className='card mb-4 rounded-3 shadow-sm'>
             <div className='card-header py-3'>
               <h4 className='my-0 fw-normal'>Pro</h4>
@@ -46,7 +49,7 @@ function Planos() {
             </div>
           </div>
         </div>
-        <div className='col'>
+        <div className='col-10 offset-1'>
           <div className='card mb-4 rounded-3 shadow-sm border-primary'>
             <div className='card-header py-3 text-bg-primary border-primary'>
               <h4 className='my-0 fw-normal'>Enterprise</h4>
