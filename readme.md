@@ -12,3 +12,5 @@
 -  Terminar a lógica if e else de detalhes.js</br>
 </p>
 
+Versão Web: https://thanwill.github.io/up-react-app/
+#MobileFirst
