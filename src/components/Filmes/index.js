@@ -1,22 +1,19 @@
-import Modal from "../Modal/index";
-import "./filmes.css";
+const ListaFilmes = ({ filmes , onMovieSelect}) => {
 
-const Filmes = ({ props }) => {
-  //const [filmeSelecionado, setFilmeSelecionado] = useState;
   return (
-    <div>
+    <div >
       <div className='row'>
-        {props.map(filme => (
-          <div className='col-10 offset-1 col-sm-6 offset-sm-0 col-lg-4'>
+        {filmes.map(filme => (
+          <div className='col-10 offset-1 col-sm-6 offset-sm-0 col-lg-4 pt-5' key={filme.id}>
             <div className='card'>
               <img src={filme.image} className='card-img-top' alt='...' />
-              <div className='card-body' key={filme.id}>
+              <div className='card-body' >
                 <h5 className='card-title'>{filme.title}</h5>
-                <Modal/>
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button 
+                onClick={()=> onMovieSelect(filme)}
+                type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                   Detalhes
-                </button>
-                
+                </button>                
               </div>
             </div>
           </div>
@@ -25,4 +22,4 @@ const Filmes = ({ props }) => {
     </div>
   );
 };
-export default Filmes;
+export default ListaFilmes;

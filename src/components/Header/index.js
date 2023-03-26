@@ -3,7 +3,7 @@ import "./header.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Inicio from "../../pages/inicio";
 import Catalogo from "../../pages/catalogo";
-import Erro from "../../pages/erro";
+import Erro from "../../pages/erro"
 import Login from "../../pages/login";
 import Planos from "../../pages/planos";
 
@@ -88,7 +88,7 @@ function Header() {
         <Route path='/catalogo' element={<Catalogo />} />
         <Route path='/logar' element={<Login />} />
         <Route path='/planos' element={<Planos />} />
-        <Route path='*' element={<Erro />} />
+        <Route path="*" element={<Erro />} />
       </Routes>
     </Router>
   );

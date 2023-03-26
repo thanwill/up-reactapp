@@ -1,5 +1,5 @@
-import Header from "./components/Header";
-import Footer from './components/Footer'
+import Header from "./components/Header/index.js";
+import Footer from './components/Footer/index.js'
 import './global.css';
 
 function App() {
