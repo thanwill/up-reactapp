@@ -4,9 +4,9 @@ import FormsLogin from '../components/Formularios'
 function Login() {
   
   return (
-    <div className="conteudo">
+    <main className="conteudo">
       <FormsLogin/>
-    </div>
+    </main>
   );
 }
 

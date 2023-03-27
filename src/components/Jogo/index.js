@@ -87,11 +87,11 @@ export default function Game() {
   });
 
   return (
-    <div className='game row'>
-      <div className='azul col-10 offset-1 col-sm-5 pb-sm-3 col-md-4 offset-md-2 '>
-      <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+    <div className="row mt-4">
+      <div className='mb-5 col-12 col-md-6'>
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
-      <div className='verde col-10 offset-1 col-sm-5 col-md-4 pt-md-3 pt-4'>{moves}</div>
+      <div className=' col-12 col-md-5'>{moves}</div>
     </div>
   );
 }

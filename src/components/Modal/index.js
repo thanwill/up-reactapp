@@ -1,7 +1,10 @@
 import "./modal.css";
 
-function Modal({ filme }) {
-  console.log(filme);
+function Modal({ filme, comentarios }) {
+  const comentariosFilme = comentarios.filter(
+    comments => comments.filmeId === filme.id
+  );
+
   return (
     <div
       class='modal fade'
@@ -40,19 +43,38 @@ function Modal({ filme }) {
                 <tr>
                   <td>Classificação</td>
                   <td>{filme.classification}</td>
-                </tr>                
+                </tr>
                 <tr>
                   <td>Ano</td>
                   <td>{filme.year}</td>
                 </tr>
               </tbody>
             </table>
-            <div className="p-3">
-            <div class="ratio ratio-16x9">
-            <iframe class="embed-responsive-item pt-3" src={filme.trailer} title="YouTube video" allowfullscreen></iframe>
-            </div>   
-            </div>           
-
+            <div className='p-3'>
+              <div class='ratio ratio-16x9'>
+                <iframe
+                  class='embed-responsive-item pt-3'
+                  src={filme.trailer}
+                  title='YouTube video'
+                  allowfullscreen></iframe>
+              </div>
+            </div>
+            <div className='row mt-3'>
+              <div className='col-10 offset-1'>
+                <h1 className="text-secondary">Comentários</h1>
+                <hr />
+                <span className='text-body'>
+                  {comentariosFilme.map((comment, i) => (
+                    <div className='col' key={i.toString()}>
+                      <span className='information'>
+                        <strong>{comment.name}</strong>
+                      </span>
+                      <p>{comment.comment}</p>
+                    </div>
+                  ))}
+                </span>
+              </div>
+            </div>
           </div>
           <div className='modal-footer'>
             <button
