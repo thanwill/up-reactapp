@@ -1,9 +1,9 @@
 import React from "react";
-
+import CardCarousel from '../components/CardCarousel'
 function Perfil() {
     return(
-        <div className='container'>            
-            <h1>Página de perfil em construção.</h1>       
+        <div className='container'>
+            <CardCarousel/>
         </div>
     );
 }
