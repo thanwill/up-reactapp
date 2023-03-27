@@ -223,6 +223,42 @@ function Catalogo() {
       trailer: "https://www.youtube.com/embed/QAcn7cWm_hc",
       image: "./images/gato.png",
     },
+    {
+      id: 5,
+      title: "Pantera Negra",
+      description:
+      "Após a morte de seu pai, o jovem T'Challa retorna a Wakanda para assumir o trono e o manto de Pantera Negra, o protetor da nação africana. Mas ele logo se vê em meio a uma conspiração que ameaça não só a segurança de Wakanda, mas de todo o mundo. Com a ajuda de seus aliados, incluindo a guerreira Nakia e o agente da CIA Everett Ross, T'Challa deve enfrentar o vilão Erik Killmonger e impedir que ele use o vibranium, o metal precioso encontrado em Wakanda, para dominar o planeta.",
+      classification: "Recomendado para maiores de 12 anos",
+      rating: 7.4,
+      assessments: "72 avaliações",
+      year: 2018,
+      trailer: "https://www.youtube.com/embed/xjDjIWPwcPU",
+      image: "./images/pantera.png",
+      },
+      {
+      id: 4,
+      title: "Vingadores: Guerra Infinita",
+      description:
+      "Os Vingadores unem forças com os Guardiões da Galáxia para deter o vilão Thanos, que está em busca das seis Joias do Infinito para poder controlar o universo. Enquanto os heróis lutam para impedir que Thanos alcance seu objetivo, eles precisam lidar com a perda de alguns de seus membros e com as consequências de suas próprias escolhas.",
+      classification: "Recomendado para maiores de 12 anos",
+      rating: 8.4,
+      assessments: "125 avaliações",
+      year: 2018,
+      trailer: "https://www.youtube.com/embed/6ZfuNTqbHE8",
+      image: "./images/vingadores.png",
+      },
+      {
+        id: 6,
+        title: "Joker",
+        description:
+        "O comediante fracassado Arthur Fleck luta para encontrar seu lugar em uma sociedade em constante declínio. Atormentado pela violência e pela falta de compaixão, ele começa a descender em uma espiral de loucura e se transforma no icônico vilão conhecido como Coringa. Enquanto isso, a cidade de Gotham também enfrenta seus próprios problemas, incluindo uma greve dos funcionários públicos e uma crescente onda de violência. Com a ajuda da terapeuta social do governo, Arthur tenta encontrar um meio de lidar com sua doença mental e sua conexão com a cidade que o despreza.",
+        classification: "Recomendado para maiores de 16 anos",
+        rating: 8.5,
+        assessments: "82 avaliações",
+        year: 2019,
+        trailer: "https://www.youtube.com/embed/zAGVQLHvwOY",
+        image: "./images/joker.png",
+        }
     // mais filmes aqui...
   ];
   const categorias = [
