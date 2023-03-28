@@ -9,7 +9,6 @@ export default function Comentar({onNewComment, filme}){
         setComment(event.target.value);
     }
 
-
     function handleSubmit(event) {
         event.preventDefault();
         // enviar comentário para API ou atualizar o estado do componente pai com os novos comentários

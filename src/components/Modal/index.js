@@ -1,18 +1,13 @@
 import "./modal.css";
 import Comentar from '../Comentar'
 import ListaComentarios from '../ListaComentarios';
-import { useState } from 'react';
 
-function Modal({ filme, listaComentarios }) {
+function Modal({ filme, comentarios }) {
 
-  listaComentarios = listaComentarios.filter(
+  comentarios = comentarios.filter(
     comments => comments.filmeId === filme.id
   );
 
-
-  function handleNewComment(newComment) {
-    setComentarios([...listaComentarios, newComment]);
-  }
 
   return (
     <div
@@ -71,9 +66,9 @@ function Modal({ filme, listaComentarios }) {
             <div className='row mt-3'>
               <div className='col-10 offset-1'>
                 <h1 className="text-secondary">Comentários</h1>
-                <ListaComentarios comentarios={listaComentarios} />
+                <ListaComentarios comentarios={comentarios} />
                 <hr />                
-                < Comentar onNewComment={handleNewComment} filme={filme} />
+                < Comentar onNewComment={comentarios.addNewComment} filme={filme} />
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ import CardCarousel from "../components/CardCarousel";
 
 function Catalogo() {
 
-  const [comentarios, setComentarios] = useState(
+  const [arrayComentarios, setComentarios] = useState(
     [
       {
         id: 1,
@@ -190,7 +190,9 @@ function Catalogo() {
     ]
   )  ;
 
-  
+  function addNewComment(newComment) {
+    setComentarios(arrayComentarios => [...arrayComentarios, newComment]);
+  }
   
   const filmes = [
     {
@@ -323,7 +325,7 @@ function Catalogo() {
         <ListaFilmes filmes={filmes} onMovieSelect={atualizaFilme} />
       </div>
       {filmeSelecionado && (
-        <Modal filme={filmeSelecionado} listaComentarios={comentarios} />
+        <Modal filme={filmeSelecionado} comentarios={arrayComentarios} />
       )}
       <div>
         <div id='carouselExample' class='carousel slide'>
