@@ -1,9 +1,18 @@
 import "./modal.css";
+import Comentar from '../Comentar'
+import ListaComentarios from '../ListaComentarios';
+import { useState } from 'react';
 
-function Modal({ filme, comentarios }) {
-  const comentariosFilme = comentarios.filter(
+function Modal({ filme, listaComentarios }) {
+
+  listaComentarios = listaComentarios.filter(
     comments => comments.filmeId === filme.id
   );
+
+
+  function handleNewComment(newComment) {
+    setComentarios([...listaComentarios, newComment]);
+  }
 
   return (
     <div
@@ -11,7 +20,7 @@ function Modal({ filme, comentarios }) {
       id='staticBackdrop'
       data-bs-backdrop='static'
       data-bs-keyboard='false'
-      tabindex='-1'
+      tabIndex='-1'
       aria-labelledby='staticBackdropLabel'
       aria-hidden='true'>
       <div className='modal-dialog '>
@@ -62,17 +71,9 @@ function Modal({ filme, comentarios }) {
             <div className='row mt-3'>
               <div className='col-10 offset-1'>
                 <h1 className="text-secondary">Comentários</h1>
-                <hr />
-                <span className='text-body'>
-                  {comentariosFilme.map((comment, i) => (
-                    <div className='col' key={i.toString()}>
-                      <span className='information'>
-                        <strong>{comment.name}</strong>
-                      </span>
-                      <p>{comment.comment}</p>
-                    </div>
-                  ))}
-                </span>
+                <ListaComentarios comentarios={listaComentarios} />
+                <hr />                
+                < Comentar onNewComment={handleNewComment} filme={filme} />
               </div>
             </div>
           </div>
