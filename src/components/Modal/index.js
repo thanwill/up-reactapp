@@ -1,13 +1,16 @@
 import "./modal.css";
-import Comentar from '../Comentar'
-import ListaComentarios from '../ListaComentarios';
+import Comentar from "../Comentar";
+import ListaComentarios from "../ListaComentarios";
+import { useState } from "react";
+import Title from "../Title";
 
 function Modal({ filme, comentarios }) {
+  comentarios = comentarios.filter(comments => comments.filmeId === filme.id);
 
-  comentarios = comentarios.filter(
-    comments => comments.filmeId === filme.id
-  );
-
+  const [showMore, setShowMore] = useState(false);
+  function handleShowMore() {
+    setShowMore(!showMore);
+  }
 
   return (
     <div
@@ -19,7 +22,7 @@ function Modal({ filme, comentarios }) {
       aria-labelledby='staticBackdropLabel'
       aria-hidden='true'>
       <div className='modal-dialog '>
-        <div className='modal-content col-10'>
+        <div className='modal-content col-12'>
           <div className='modal-header'>
             <h1 class='modal-title fs-5 ' id='staticBackdropLabel'>
               {filme.title}
@@ -31,10 +34,16 @@ function Modal({ filme, comentarios }) {
               aria-label='Close'></button>
           </div>
           <div className='modal-body'>
-            <p className='col-10 offset-1 col-md-10 offset-md-1 pt-5 pb-4'>
-              {filme.description}
+            <Title title={"Sinopse"} />
+            <p className='col-10 offset-1 col-md-10 offset-md-1 description'>
+              {showMore ? filme.description : filme.description.slice(0, 200)}
             </p>
-            <table class='table table-striped'>
+            <div className='text-center pt-3'>
+              <button className="btn-see-more" onClick={handleShowMore}>
+                {showMore ? "Mostrar menos" : "Mostrar mais"}
+              </button>
+            </div>            
+            <div class='table table-striped offcanvas'>
               <tbody>
                 <tr>
                   <td>Avaliações</td>
@@ -53,35 +62,35 @@ function Modal({ filme, comentarios }) {
                   <td>{filme.year}</td>
                 </tr>
               </tbody>
-            </table>
-            <div className='p-3'>
-              <div class='ratio ratio-16x9'>
-                <iframe
-                  class='embed-responsive-item pt-3'
-                  src={filme.trailer}
-                  title='YouTube video'
-                  allowfullscreen></iframe>
+            </div>
+            <Title title={"Trailer"} />
+            <div className='row'>
+              <div className='col-10 offset-1 col-md-10 offset-md-1'>
+                <div className='embed-responsive embed-responsive-16by9'>
+                  <iframe
+                    className='embed-responsive-item'
+                    src={filme.trailer}
+                    title='YouTube video'
+                    allowfullscreen></iframe>
+                </div>
               </div>
             </div>
-            <div className='row mt-3'>
-              <div className='col-10 offset-1'>
-                <h1 className="text-secondary">Comentários</h1>
-                <ListaComentarios comentarios={comentarios} />
-                <hr />                
-                < Comentar onNewComment={comentarios.addNewComment} filme={filme} />
-              </div>
+            <div className='row'>
+              <Title title={"Comentários"} />
+              <ListaComentarios comentarios={comentarios} />        
+            </div>
+            <div className='row'>
+              <Title title={"Deixe seu comentário"} />
+            <Comentar addComment={comentarios} filme={filme} />
             </div>
           </div>
           <div className='modal-footer'>
-            <button
-              type='button'
-              className='btn btn-secondary'
-              data-bs-dismiss='modal'>
-              Fechar
-            </button>
-            <button type='button' className='btn btn-primary'>
-              Editar
-            </button>
+          <button
+                type='button'
+                className='btn btn-secondary'
+                data-bs-dismiss='modal'>
+                Fechar
+              </button>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Carousel, Card } from "react-bootstrap";
 import './cardcarousel.css'
+
 function CardCarousel({ categorias, onMovieSelect }) {
   return (
     <Carousel>

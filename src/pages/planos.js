@@ -6,8 +6,7 @@ function Planos() {
     <main className='conteudo'>
       <div className='row'>
 
-        <Title title={"Conheça nossos planos"} text={"Ao assinar nosso site de filmes, você terá acesso ilimitado a uma ampla variedade de filmes e séries de sucesso, de diferentes gêneros e épocas, com opções para toda a família. Além disso, atualizamos regularmente nossa biblioteca de conteúdo para garantir que você sempre tenha novidades para assistir. Não perca mais tempo procurando por entretenimento de qualidade, assine agora e desfrute de uma experiência cinematográfica incomparável!"}/>
-      
+        <Title title={"Conheça nossos planos"}/>      
         <div className='col-md-8 offset-md-2'>
           <div className='row'>
             <div className=' col-10 offset-1 col-md-3'>
@@ -82,6 +81,7 @@ function Planos() {
             </div>
           </div>
         </div>
+        <Title text={"Ao assinar nosso site de filmes, você terá acesso ilimitado a uma ampla variedade de filmes e séries de sucesso, de diferentes gêneros e épocas, com opções para toda a família. Além disso, atualizamos regularmente nossa biblioteca de conteúdo para garantir que você sempre tenha novidades para assistir. Não perca mais tempo procurando por entretenimento de qualidade, assine agora e desfrute de uma experiência cinematográfica incomparável!"}/>
       </div>
     </main>
   );

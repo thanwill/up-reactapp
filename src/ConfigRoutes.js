@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Inicio from "./pages/inicio";
+import Inicio from "./pages/jogos";
 import Catalogo from "./pages/catalogo";
 import Erro from "./pages/erro.js";
 import Login from "./pages/login";

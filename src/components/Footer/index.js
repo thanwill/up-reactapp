@@ -1,8 +1,6 @@
-import { useLocation } from "react-router-dom";
 import "./footer.css";
 export default function Footer() {
   const data = new Date();
-  const location = useLocation();
 
   return (
     <footer className='d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top navbar-fixed-bottom'>

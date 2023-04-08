@@ -1,40 +1,56 @@
-import { Form, FormControl, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
+import comments from '../../data/comentarios';
 
-export default function Comentar({onNewComment, filme}){
+function Comentar({ filme }) {
 
-    const [comment, setComment] = useState('');
-    
-    function handleCommentChange(event) {
-        setComment(event.target.value);
-    }
+  const [name, setName] = useState('');
+  const [comment, setComment] = useState('');
+ 
+  function addComment(comment) {
+    setComment([...comments, comment]);
+  }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        // enviar comentário para API ou atualizar o estado do componente pai com os novos comentários
-        const newComment = {
-            id: new Date().getTime(),
-            name: "Anônimo",
-            comment: comment,
-            filmeId: filme.id.toString(),
-            data:new Date().toDateString('d/MM/YYYY')
-        }
-        onNewComment(newComment);
-        console.log(newComment);
-        setComment('');        
-    }
+  function handleSubmit(event) {
+    event.preventDefault();
+    const newComment = {
+      id: comments.length + 1,
+      name: name,
+      comment: comment,
+      movieId: filme.id,
+    };
+    console.log(newComment);
+    addComment(newComment);
+    setName('');
+    setComment('');
+  }
 
   return (
-    <Form onSubmit={handleSubmit} className='mt-5 mb-5'>
-      <Form.Label>Deixe um :</Form.Label>
-      <FormControl
-        as="textarea"
-        value={comment}
-        onChange={handleCommentChange}
-        required
-      />
-      <Button className="mt-3" type="submit">Enviar</Button>
+    <Form onSubmit={handleSubmit} className='col-10 offset-1 col-md-10 offset-md-1'>
+      <Form.Group className='mb-3' controlId='formBasicEmail'>
+        <Form.Label>Nome</Form.Label>
+        <Form.Control
+          type='text'
+          placeholder='Digite seu nome'
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
+      </Form.Group>
+      <Form.Group className='mb-3' controlId='formBasicPassword'>
+        <Form.Label>Comentário</Form.Label>
+        <Form.Control
+          type='text'
+          placeholder='Digite seu comentário'
+          value={comment}
+          onChange={(event) => setComment(event.target.value)}
+        />
+      </Form.Group>
+      <Button variant='primary' type='submit'>
+        Enviar
+      </Button>
     </Form>
   );
-  
+
 }
+
+export default Comentar;

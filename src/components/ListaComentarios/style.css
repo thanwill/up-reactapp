@@ -1,0 +1,21 @@
+button{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 1rem;
+}
+p{
+    font-size: 1.2rem;
+    color: #333;
+}
+small{
+    font-size: 0.8rem;
+    color: #999;
+}

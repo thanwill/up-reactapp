@@ -6,7 +6,7 @@ const ListaFilmes = ({ filmes, onMovieSelect }) => {
       <div className='row'>     
              
         {filmes.map(filme => (                
-          <div className='col-10 offset-1 col-md-3 mt-5' key={filme.id}>
+          <div className='col-12 col-md-4 mt-5' key={filme.id}>
             <div className='card'>
               <img src={filme.image} className='card-img-top' alt='...' />
               <div className='card-body'>
