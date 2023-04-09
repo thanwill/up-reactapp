@@ -18,7 +18,7 @@ class ErrorBoundary extends React.Component {
       return (
         <div className="text-center pt-5">
         <img src={'./assets/image/imagem-break.png'} alt="Icone indicando moça trabalhando em um computador enquanto a página carrega." srcset="" />
-        <Title title={'Ops, algum problema está acontencendo por aqui ...'} classe={'text-center m-5'}/>
+        <Title title={'Ops, temos um probleminha aqui...'} classe={'text-center m-5'}/>
     </div>
       );
     }
