@@ -12,6 +12,7 @@ function Inicio() {
           text={
             "Olá! Seja bem-vindo ao nosso jogo em desenvolvimento. Gostaria de informar que ainda estamos trabalhando nas páginas finais, mas para que você possa aproveitar um pouco do que temos até agora, preparamos uma versão demo para você jogar. Esperamos que goste e agradecemos a sua compreensão enquanto finalizamos o restante do jogo. Aproveite!"
           }
+          classe={'text-center m-5'}
         />
 
         <div className='col-10 offset-1 col-md-6 offset-md-3'>

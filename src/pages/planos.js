@@ -6,7 +6,7 @@ function Planos() {
     <main className='conteudo'>
       <div className='row'>
 
-        <Title title={"Conheça nossos planos"}/>      
+        <Title title={"Conheça nossos planos"} classe={'text-center mb-5'}/>      
         <div className='col-md-8 offset-md-2'>
           <div className='row'>
             <div className=' col-10 offset-1 col-md-3'>

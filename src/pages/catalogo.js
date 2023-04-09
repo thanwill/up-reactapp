@@ -7,15 +7,7 @@ import comments from "../data/comentarios";
 import movies from "../data/filmes";
 import categories from "../data/categorias";
 import Title from '../components/Title/index';
-import Jumbotrons from '../components/Jumbotrons/index';
 function Catalogo() {
-
-  const [comentarios, setComentarios] = useState(comments);
-  
-  function addComment(newcomment) {
-    setComentarios(comments => [...comentarios, newcomment]);  
-  }
-
   const [filmeSelecionado, setFilme] = useState(null);
 
   const selecionaFilme = (filme) => {
@@ -27,10 +19,9 @@ function Catalogo() {
       
       <div className='mt-5 mb-5 col-10 offset-1 col-md-8 offset-md-2 '>    
         
-        <Title title={"Assista sucessos mundiais"}/>
+        <Title title={"Assista sucessos mundiais!"} classe={'text-center m-5'}/>
         <CardCarousel categorias={categories} />
         <ListaFilmes filmes={movies} onMovieSelect={selecionaFilme} />
-        <Title text={""}/>
         
       </div>
       {filmeSelecionado && (
@@ -62,5 +53,4 @@ function Catalogo() {
     </main>
   );
 }
-
 export default Catalogo;
