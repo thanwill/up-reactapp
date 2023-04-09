@@ -7,9 +7,9 @@ import comments from "../data/comentarios";
 import movies from "../data/filmes";
 import categories from "../data/categorias";
 import Title from '../components/Title/index';
+
 function Catalogo() {
   const [filmeSelecionado, setFilme] = useState(null);
-
   const selecionaFilme = (filme) => {
     setFilme(filme);
   };

@@ -77,7 +77,9 @@ function Modal({ filme, comentarios }) {
             </div>
             <div className='row'>
               <Title title={"Comentários"} />
-              <ListaComentarios comentarios={comentarios} />        
+              {filme && (
+                <ListaComentarios filme={filme} /> 
+              )}       
             </div>
             <div className='row'>
               <Title title={"Deixe seu comentário"} />

@@ -21,7 +21,7 @@ function Comentar({ filme }) {
     };
     console.log(newComment);
     if (newComment.name === "" || newComment.comment === "") {
-      alert("Preencha todos os campos");
+      console.log("Preencha todos os campos");
       return;
     } else if (typeof Storage !== "undefined") {
       
@@ -35,8 +35,8 @@ function Comentar({ filme }) {
 
       setName("");
       setComment("");
-      alert("Comentário enviado com sucesso!");
-
+      console.log("Comentário enviado com sucesso!");
+      
   }
 
   return (
