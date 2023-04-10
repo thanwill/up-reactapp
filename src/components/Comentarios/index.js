@@ -4,7 +4,6 @@ import "./style.css";
 import comentarios from "../../data/comentarios";
 
 export default function Comentarios({ filme }) {
-
   const comentariosJSON = JSON.stringify(comentarios);
   const [comentariosLS, setComentariosLS] = useState(
     JSON.parse(localStorage.getItem("comentarios")) || []
@@ -52,7 +51,6 @@ export default function Comentarios({ filme }) {
   }
 
   return (
-
     <ListGroup className='col-10 offset-1'>
       {/* {showMore
         ? comments.map(comment => (
@@ -76,28 +74,53 @@ export default function Comentarios({ filme }) {
               <small>{comment.comment}</small>
             </ListGroup.Item>
           ))} */}
-          {comments.map(comment => (
-            <ListGroup.Item key={comment.id}>
-            <div className='comment-wrapper'>
-              <div className='row'>
-                <p className='col-10'>{comment.name}</p>
-                <button
-                  className='col'
-                  onClick={() => handleDeleteComment(comment.id)}>
-                  X
-                </button>
-              </div>
-              <small>{comment.comment}</small>
-            </div>
-          </ListGroup.Item>
-          ))}
 
-      <ListGroup.Item className='text-center'>
-        <button onClick={handleShowMore}>
-          {showMore ? "Mostrar menos" : "Mostrar mais"}
-        </button>
-      </ListGroup.Item>
+      {comments.length > 0 ? (
+        <>
+          <ListGroup.Item className='text-center'>
+            <button onClick={handleShowMore}>
+              {showMore ? "Mostrar menos" : "Mostrar mais"}
+            </button>
+          </ListGroup.Item>
+          {showMore
+            ? comments.map(comment => (
+                <ListGroup.Item key={comment.id}>
+                  <div className='comment-wrapper'>
+                    <div className='row'>
+                      <p className='col-10'>{comment.name}</p>
+                      <button
+                        className='col'
+                        onClick={() => handleDeleteComment(comment.id)}>
+                        X
+                      </button>
+                    </div>
+                    <small>{comment.comment}</small>
+                  </div>
+                </ListGroup.Item>
+              ))
+            : comments.slice(0, 3).map(comment => (
+                <ListGroup.Item key={comment.id}>
+                  <div className='comment-wrapper'>
+                    <div className='row'>
+                      <p className='col-10'>{comment.name}</p>
+                      <button
+                        className='col'
+                        onClick={() => handleDeleteComment(comment.id)}>
+                        X
+                      </button>
+                    </div>
+                    <small>{comment.comment}</small>
+                  </div>
+                </ListGroup.Item>
+              ))}
+        </>
+      ) : (
+        <ListGroup.Item className='text-center'>
+          <p className='col-12 text-center'>
+            Adicione um comentário para este filme
+          </p>
+        </ListGroup.Item>
+      )}
     </ListGroup>
-    
   );
 }
