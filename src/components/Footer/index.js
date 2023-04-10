@@ -21,7 +21,7 @@ export default function Footer() {
             className='text-muted'
             target='blank'
             href='https://wa.me/5541987233861'>
-            <i class='bi bi-whatsapp'></i>
+            <i className='bi bi-whatsapp'></i>
           </a>
         </li>
         <li className='ms-3'>
@@ -29,7 +29,7 @@ export default function Footer() {
             className='text-muted'
             target='blank'
             href='https://www.linkedin.com/in/jonathanwillian/'>
-            <i class='bi bi-linkedin'></i>
+            <i className='bi bi-linkedin'></i>
           </a>
         </li>
         <li className='ms-3'>
@@ -37,7 +37,7 @@ export default function Footer() {
             className='text-muted'
             target='blank'
             href='https://twitter.com/JONATHANWILLlAN'>
-            <i class='bi bi-twitter'></i>
+            <i className='bi bi-twitter'></i>
           </a>
         </li>
       </ul>

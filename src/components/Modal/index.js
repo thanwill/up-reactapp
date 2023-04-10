@@ -4,8 +4,9 @@ import ListaComentarios from "../ListaComentarios";
 import { useState } from "react";
 import Title from "../Title";
 
-function Modal({ filme, comentarios }) {
-  comentarios = comentarios.filter(comments => comments.filmeId === filme.id);
+function Modal({ filme }) {
+
+  // comentarios = comentarios.filter(comments => comments.filmeId === filme.id);
 
   const [showMore, setShowMore] = useState(false);
   function handleShowMore() {
@@ -14,7 +15,7 @@ function Modal({ filme, comentarios }) {
 
   return (
     <div
-      class='modal fade'
+      className='modal fade'
       id='staticBackdrop'
       data-bs-backdrop='static'
       data-bs-keyboard='false'
@@ -24,7 +25,7 @@ function Modal({ filme, comentarios }) {
       <div className='modal-dialog '>
         <div className='modal-content col-12'>
           <div className='modal-header'>
-            <h1 class='modal-title fs-5 ' id='staticBackdropLabel'>
+            <h1 className='modal-title fs-5 ' id='staticBackdropLabel'>
               {filme.title}
             </h1>
             <button
@@ -43,26 +44,7 @@ function Modal({ filme, comentarios }) {
                 {showMore ? "Mostrar menos" : "Mostrar mais"}
               </button>
             </div>            
-            <div class='table table-striped offcanvas'>
-              <tbody>
-                <tr>
-                  <td>Avaliações</td>
-                  <td>{filme.assessments}</td>
-                </tr>
-                <tr>
-                  <td>Tomatometer</td>
-                  <td>{filme.rating}</td>
-                </tr>
-                <tr>
-                  <td>Classificação</td>
-                  <td>{filme.classification}</td>
-                </tr>
-                <tr>
-                  <td>Ano</td>
-                  <td>{filme.year}</td>
-                </tr>
-              </tbody>
-            </div>
+            
             <Title title={"Trailer"} />
             <div className='row'>
               <div className='col-10 offset-1 col-md-10 offset-md-1'>
@@ -71,7 +53,7 @@ function Modal({ filme, comentarios }) {
                     className='embed-responsive-item'
                     src={filme.trailer}
                     title='YouTube video'
-                    allowfullscreen></iframe>
+                    allowFullScreen></iframe>
                 </div>
               </div>
             </div>
@@ -83,7 +65,7 @@ function Modal({ filme, comentarios }) {
             </div>
             <div className='row'>
               <Title title={"Deixe seu comentário"} />
-            <Comentar addComment={comentarios} filme={filme} />
+            <Comentar filme={filme} />
             </div>
           </div>
           <div className='modal-footer'>

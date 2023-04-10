@@ -1,4 +1,4 @@
-var comments = [
+var comentarios = [
     {
         id: 1,
         name: "Carlos Babiano",
@@ -163,4 +163,4 @@ var comments = [
     },
 ]
 
-module.exports = comments;
+module.exports = comentarios;

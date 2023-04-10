@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Title from "../../components/Title/index.js";
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -6,20 +6,27 @@ class ErrorBoundary extends React.Component {
     this.state = { hasError: false };
   }
 
+  static getDerivedStateFromError(error) {
+    // Atualiza o estado para que a próxima renderização mostre a UI de fallback.
+    return { hasError: true };
+  }
+
   componentDidCatch(error, errorInfo) {
-    // You can log the error or send it to a logging service
-    console.error(error);
-    this.setState({ hasError: true });
+    // Você também pode registrar o erro em um serviço de relatório de erros
+    console.error("Erro capturado pelo Error Boundary:", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <div className="text-center pt-5">
-        <img src={'./assets/image/imagem-break.png'} alt="Icone indicando moça trabalhando em um computador enquanto a página carrega." srcset="" />
-        <Title title={'Ops, temos um probleminha aqui...'} classe={'text-center m-5'}/>
-    </div>
+        <div className='text-center pt-5'>
+          <img src={"./assets/image/imagem-break.png"} alt='' srcset='' />
+          <Title
+            title={"Ops, temos um probleminha aqui..."}
+            classe={"text-center m-5"}
+          />
+        </div>
       );
     }
 

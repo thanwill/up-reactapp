@@ -32,7 +32,7 @@
      image: "./images/gato.png",
    },
    {
-     id: 5,
+     id: 4,
      title: "Pantera Negra",
      description: "Após a morte de seu pai, o jovem T'Challa retorna a Wakanda para assumir o trono e o manto de Pantera Negra, o protetor da nação africana. Mas ele logo se vê em meio a uma conspiração que ameaça não só a segurança de Wakanda, mas de todo o mundo. Com a ajuda de seus aliados, incluindo a guerreira Nakia e o agente da CIA Everett Ross, T'Challa deve enfrentar o vilão Erik Killmonger e impedir que ele use o vibranium, o metal precioso encontrado em Wakanda, para dominar o planeta.",
      classification: "Recomendado para maiores de 12 anos",
@@ -43,7 +43,7 @@
      image: "./images/pantera.png",
    },
    {
-     id: 4,
+     id: 5,
      title: "Vingadores: Guerra Infinita",
      description: "Os Vingadores unem forças com os Guardiões da Galáxia para deter o vilão Thanos, que está em busca das seis Joias do Infinito para poder controlar o universo. Enquanto os heróis lutam para impedir que Thanos alcance seu objetivo, eles precisam lidar com a perda de alguns de seus membros e com as consequências de suas próprias escolhas.",
      classification: "Recomendado para maiores de 12 anos",

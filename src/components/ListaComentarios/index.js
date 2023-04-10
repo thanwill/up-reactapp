@@ -1,24 +1,35 @@
 import { ListGroup } from "react-bootstrap";
 import { useState } from "react";
 import "./style.css";
+import comentarios from "../../data/comentarios";
 
 export default function ListaComentarios({ filme }) {
+
   const [showMore, setShowMore] = useState(false);
   function handleShowMore() {
     setShowMore(!showMore);
   }
 
-  const [showDelete, setShowDelete] = useState(false);
-  const commentStorage = JSON.parse(localStorage.getItem("comentarios"));
-  const comments = commentStorage.filter(
-    comment => comment.filmeId === filme.id
-  );
+  const comentariosJSON = JSON.stringify(comentarios);
+  localStorage.setItem("comentarios", comentariosJSON);
 
-  const handleDelete = id => {
-    const updatedComments = commentStorage.filter(comment => comment.id !== id);
-    localStorage.setItem("comentarios", JSON.stringify(updatedComments));
-    setShowDelete(false);
-  };
+  const comentariosLS = JSON.parse(localStorage.getItem("comentarios"));
+  var comments = [];
+
+  try{
+    if(!comentariosLS) { // se não tiver comentários
+      throw new Error("Não há comentários");      
+    }else if(comentariosLS.length === 0){ // se tiver comentários mas não tiver nenhum para o filme atual
+      throw new Error("Não há comentários para este filme");
+    }else{
+      comments = comentariosLS.filter(
+        comment => comment.filmeId === filme.id
+      );
+    } 
+  }catch(error){
+    console.log(error);
+  }
+
 
   return (
     <ListGroup className='col-10 offset-1'>

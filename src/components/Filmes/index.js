@@ -1,11 +1,11 @@
 import "../../global.css";
+import movies from "../../data/filmes";
 
-const ListaFilmes = ({ filmes, onMovieSelect }) => {
+const ListaFilmes = ({ onMovieSelect }) => {
   return (
     <div>
-      <div className='row'>     
-             
-        {filmes.map(filme => (                
+      <div className='row'>
+        {movies.map(filme => (
           <div className='col-12 col-md-4 mt-5' key={filme.id}>
             <div className='card'>
               <img src={filme.image} className='card-img-top' alt='...' />
