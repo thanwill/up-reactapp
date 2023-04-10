@@ -2,36 +2,36 @@ import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import comentarios from "../../data/comentarios";
 
-function Comentar({ filme }) {
+export default function Comentar({ filme }) {
 
   const comentariosJSON = JSON.stringify(comentarios);
-
   const [comentariosLS, setComentariosLS] = useState(
-    JSON.parse(localStorage.getItem("comentarios"))
+    JSON.parse(localStorage.getItem("comentarios")) || []
   );
   
-  localStorage.setItem("comentarios", comentariosJSON); // se não tiver comentários no localStorage, adiciona os comentários do arquivo data/comentarios.js
 
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
+    localStorage.setItem("comentarios", comentariosJSON); // se não tiver comentários no localStorage, adiciona os comentários do arquivo data/comentarios.js
 
     const newComment = {
       id: comentariosLS.length + 1,
       filmeId: filme.id,
-      nome: name,
-      comentario: comment,
+      name: name,
+      comment: comment,
     };
 
-    const updatedComments = [...comentariosLS, newComment]; // cria uma cópia do array de comentários e adiciona o novo comentário
-    setComentariosLS(updatedComments); // atualiza o estado com o novo comentário
-    localStorage.setItem("comentarios", JSON.stringify(updatedComments)); // atualiza o localStorage com o novo comentário
-
-    setName("");
-    setComment("");
-    
+    if (newComment.nome === "" || newComment.comentario === "") {
+      alert("Preencha todos os campos");
+      return;
+    }else{
+      const updatedComments = [...comentariosLS, newComment];
+      setComentariosLS(updatedComments);
+      localStorage.setItem("comentarios", JSON.stringify(updatedComments));
+    }
   }
 
 
@@ -63,5 +63,3 @@ function Comentar({ filme }) {
     </Form>
   );
 }
-
-export default Comentar;

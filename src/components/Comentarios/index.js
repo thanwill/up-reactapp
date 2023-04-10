@@ -4,20 +4,18 @@ import "./style.css";
 import comentarios from "../../data/comentarios";
 
 export default function Comentarios({ filme }) {
-  const comentariosJSON = JSON.stringify(comentarios);
-  const [comentariosLS, setComentariosLS] = useState(
-    JSON.parse(localStorage.getItem("comentarios")) || []
-  );
-
-  localStorage.setItem("comentarios", comentariosJSON); // se não tiver comentários no localStorage, adiciona os comentários do arquivo data/comentarios.js
 
   const [showMore, setShowMore] = useState(false);
-
+  const comentariosJSON = JSON.stringify(comentarios);
+  const [comentariosLS, setComentariosLS] = useState(
+    JSON.parse(localStorage.getItem("comentarios")) || [] // 
+  );
   function handleShowMore() {
     setShowMore(!showMore);
   }
 
   function handleDeleteComment(commentId) {
+    localStorage.setItem("comentarios", comentariosJSON); // se não tiver comentários no localStorage, adiciona os comentários do arquivo data/comentarios.js
     // cria uma cópia do array de comentários
     const updatedComments = [...comentariosLS];
 
@@ -35,20 +33,9 @@ export default function Comentarios({ filme }) {
       localStorage.setItem("comentarios", JSON.stringify(updatedComments));
     }
   }
-
-  try {
-    if (!comentariosLS) {
-      throw new Error("Não há comentários"); // se não tiver comentários
-    } else if (comentariosLS.length === 0) {
-      throw new Error("Não há comentários para este filme"); // se tiver comentários mas não tiver nenhum para o filme atual
-    } else {
-      var comments = comentariosLS.filter(
-        comment => comment.filmeId === filme.id
-      ); // se tiver comentários para o filme atual
-    }
-  } catch (error) {
-    console.log(error);
-  }
+  var comments = comentariosLS.filter(
+    comment => comment.filmeId === filme.id
+  );
 
   return (
     <ListGroup className='col-10 offset-1'>
