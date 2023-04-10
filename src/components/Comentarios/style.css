@@ -17,3 +17,15 @@ small{
     font-size: 0.8rem;
     color: #999;
 }
+.comment-wrapper{
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+}
+.comment-wrapper:hover{
+    box-shadow: 0 0 10px #ccc;
+}
+.comment-actions{
+    margin-top: 1rem;
+}

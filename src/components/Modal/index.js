@@ -1,6 +1,6 @@
 import "./modal.css";
 import Comentar from "../Comentar";
-import ListaComentarios from "../ListaComentarios";
+import Comentarios from "../Comentarios";
 import { useState } from "react";
 import Title from "../Title";
 
@@ -60,7 +60,7 @@ function Modal({ filme }) {
             <div className='row'>
               <Title title={"Comentários"} />
               {filme && (
-                <ListaComentarios filme={filme} /> 
+                <Comentarios filme={filme} /> 
               )}       
             </div>
             <div className='row'>

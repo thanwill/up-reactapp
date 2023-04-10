@@ -1,43 +1,39 @@
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
-import comments from "../../data/comentarios";
+import comentarios from "../../data/comentarios";
 
 function Comentar({ filme }) {
+
+  const comentariosJSON = JSON.stringify(comentarios);
+
+  const [comentariosLS, setComentariosLS] = useState(
+    JSON.parse(localStorage.getItem("comentarios"))
+  );
+  
+  localStorage.setItem("comentarios", comentariosJSON); // se não tiver comentários no localStorage, adiciona os comentários do arquivo data/comentarios.js
+
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
 
-  function addComment(comment) {
-    setComment([...comments, comment]);
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
+
     const newComment = {
-      id: comments.length + 1,
-      name: name,
-      comment: comment,
+      id: comentariosLS.length + 1,
       filmeId: filme.id,
-      data: new Date().toLocaleDateString(),
+      nome: name,
+      comentario: comment,
     };
-    console.log(newComment);
-    if (newComment.name === "" || newComment.comment === "") {
-      console.log("Preencha todos os campos");
-      return;
-    } else if (typeof Storage !== "undefined") {
-      
-      addComment(newComment);
-      comments.push(newComment);
-      localStorage.setItem("comentarios", JSON.stringify(comments));
 
-     } else {
-        throw new Error("Não foi possível salvar os comentários");
-      } 
+    const updatedComments = [...comentariosLS, newComment]; // cria uma cópia do array de comentários e adiciona o novo comentário
+    setComentariosLS(updatedComments); // atualiza o estado com o novo comentário
+    localStorage.setItem("comentarios", JSON.stringify(updatedComments)); // atualiza o localStorage com o novo comentário
 
-      setName("");
-      setComment("");
-      console.log("Comentário enviado com sucesso!");
-      
+    setName("");
+    setComment("");
+    
   }
+
 
   return (
     <Form
