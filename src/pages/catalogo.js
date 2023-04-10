@@ -3,9 +3,7 @@ import ListaFilmes from "../components/Filmes";
 import Modal from "../components/Modal";
 import "../global.css";
 import CardCarousel from "../components/CardCarousel";
-import comments from "../data/comentarios";
 import movies from "../data/filmes";
-import categories from "../data/categorias";
 import Title from "../components/Title/index";
 import ErrorBoundary from '../components/ErrorBoundary/index';
 
