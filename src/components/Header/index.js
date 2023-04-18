@@ -68,6 +68,11 @@ function Header() {
                 entrar
               </Link>
             </li>
+            <li className='nav-item'>
+              <Link className='nav-link' to='/cadastrar'>
+                cadastrar
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>
