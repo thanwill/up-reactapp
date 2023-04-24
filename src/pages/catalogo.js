@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import ListaFilmes from "../components/Filmes";
+import ListaFilmes from "../components/CardFilmes";
 import Modal from "../components/Modal";
 import "../global.css";
 import CardCarousel from "../components/CardCarousel";
