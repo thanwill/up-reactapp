@@ -141,9 +141,9 @@ const StepForm = () => {
                   <>
                     <input
                       type='text'
-                      value={address.logradouro}
-                      placeholder='Logradouro'
                       onChange={e => setStreet(e.target.value)}
+                      value={address.logradouro}
+                      placeholder='Logradouro'                      
                     />
                     <input
                       type='text'
