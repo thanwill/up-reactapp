@@ -9,21 +9,25 @@ function Modal({ filme }) {
   
   localStorage.setItem("comentarios", JSON.stringify(comentarios)); // se não tiver comentários no localStorage, adiciona os comentários do arquivo data/comentarios.js
 
+  // lista de comentarios do filme selecionado no modal
   const [ comentarioslista, setComentarioslista ] = useState(() => {
     const storageComentarios = JSON.parse(localStorage.getItem("comentarios"));
     return storageComentarios || comentarios;
   })
 
+  // adiciona um novo comentario na lista de comentarios
   const handleAddComentario = (comentario) => {
     setComentarioslista((prevcomentarios) => [...prevcomentarios, comentario]);
     localStorage.setItem("comentarios", JSON.stringify(comentarioslista));
   }
 
+  // remove um comentario da lista de comentarios
   const handleRemoveComentario = (comentarioId) => {
     setComentarioslista((prevcomentarios) => prevcomentarios.filter((comentario) => comentario.id !== comentarioId));
     localStorage.setItem("comentarios", JSON.stringify(comentarioslista));
   }
 
+  // mostra mais ou menos da sinopse
   const [showMore, setShowMore] = useState(false);
   function handleShowMore() {
     setShowMore(!showMore);

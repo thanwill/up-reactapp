@@ -9,7 +9,6 @@ import ErrorBoundary from '../components/ErrorBoundary/index';
 
 function Catalogo() {
 
- 
 
   const [filmeSelecionado, setFilme] = useState(null);
   const selecionaFilme = filme => {

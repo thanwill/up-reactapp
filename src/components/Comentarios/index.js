@@ -1,6 +1,5 @@
 import { ListGroup } from "react-bootstrap";
 import { useState } from "react";
-import ItensComentarios from "./ItensComentarios.js";
 import "./style.css";
 
 export default function Comentarios({ filme, comentarios, onRemoveComment }) {

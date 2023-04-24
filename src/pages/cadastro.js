@@ -4,7 +4,6 @@ import StepForm from '../components/StepForm/index';
 
 function Cadastro() {
 
-
   return (
     <ErrorBoundary>        
         <StepForm/>
