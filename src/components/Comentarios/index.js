@@ -1,113 +1,92 @@
 import { ListGroup } from "react-bootstrap";
 import { useState } from "react";
+import ItensComentarios from "./ItensComentarios.js";
 import "./style.css";
-import comentarios from "../../data/comentarios";
 
-export default function Comentarios({ filme }) {
-
+export default function Comentarios({ filme, comentarios, onRemoveComment }) {
   const [showMore, setShowMore] = useState(false);
-  const comentariosJSON = JSON.stringify(comentarios);
-  const [comentariosLS, setComentariosLS] = useState(
-    JSON.parse(localStorage.getItem("comentarios")) || [] // 
-  );
   function handleShowMore() {
     setShowMore(!showMore);
   }
 
-  function handleDeleteComment(commentId) {
-    localStorage.setItem("comentarios", comentariosJSON); // se não tiver comentários no localStorage, adiciona os comentários do arquivo data/comentarios.js
-    // cria uma cópia do array de comentários
-    const updatedComments = [...comentariosLS];
+  const [hoveredItemId, setHoveredItemId] = useState(null);
+  const [isHovering, setIsHovering] = useState(false);
 
-    // procura o índice do comentário a ser excluído
-    const commentIndex = updatedComments.findIndex(
-      comment => comment.id === commentId
-    );
-
-    if (commentIndex >= 0) {
-      // remove o comentário da cópia do array
-      updatedComments.splice(commentIndex, 1);
-
-      // atualiza o estado e o localStorage com o array atualizado
-      setComentariosLS(updatedComments);
-      localStorage.setItem("comentarios", JSON.stringify(updatedComments));
-    }
-  }
-  var comments = comentariosLS.filter(
-    comment => comment.filmeId === filme.id
+  const filtrados = comentarios.filter(
+    comentario => comentario.filmeId === filme.id
   );
 
   return (
     <ListGroup className='col-10 offset-1'>
-      {/* {showMore
-        ? comments.map(comment => (
-            <ListGroup.Item key={comment.id}>
-              <div className='comment-wrapper'>
-                <div className='row'>
-                  <p className='col-10'>{comment.name}</p>
-                  <button
-                    className='col'
-                    onClick={() => handleDeleteComment(comment.id)}>
-                    X
-                  </button>
-                </div>
-                <small>{comment.comment}</small>
-              </div>
-            </ListGroup.Item>
-          ))
-        : comments.slice(1, 3).map(comment => (
-            <ListGroup.Item key={comment.id}>
-              <p>{comment.name}</p>
-              <small>{comment.comment}</small>
-            </ListGroup.Item>
-          ))} */}
-
-      {comments.length > 0 ? (
-        <>
-          <ListGroup.Item className='text-center'>
-            <button onClick={handleShowMore}>
-              {showMore ? "Mostrar menos" : "Mostrar mais"}
-            </button>
-          </ListGroup.Item>
-          {showMore
-            ? comments.map(comment => (
-                <ListGroup.Item key={comment.id}>
-                  <div className='comment-wrapper'>
-                    <div className='row'>
-                      <p className='col-10'>{comment.name}</p>
-                      <button
-                        className='col'
-                        onClick={() => handleDeleteComment(comment.id)}>
-                        X
-                      </button>
-                    </div>
-                    <small>{comment.comment}</small>
-                  </div>
-                </ListGroup.Item>
-              ))
-            : comments.slice(0, 3).map(comment => (
-                <ListGroup.Item key={comment.id}>
-                  <div className='comment-wrapper'>
-                    <div className='row'>
-                      <p className='col-10'>{comment.name}</p>
-                      <button
-                        className='col'
-                        onClick={() => handleDeleteComment(comment.id)}>
-                        X
-                      </button>
-                    </div>
-                    <small>{comment.comment}</small>
-                  </div>
-                </ListGroup.Item>
-              ))}
-        </>
+      {showMore ? (
+        <ListGroup.Item className='text-center'>
+          <button className='btn-see-more' onClick={handleShowMore}>
+            Mostrar menos
+          </button>
+        </ListGroup.Item>
       ) : (
         <ListGroup.Item className='text-center'>
-          <p className='col-12 text-center'>
-            Adicione um comentário para este filme
-          </p>
+          <button className='btn-see-more' onClick={handleShowMore}>
+            Mostrar mais
+          </button>
         </ListGroup.Item>
       )}
+
+      {filtrados.length === 0 && (
+        <ListGroup.Item className='text-center'>
+          <p className='comentario-comment'>Seja o primeiro a comentar.</p>
+        </ListGroup.Item>
+      )}
+
+      {showMore
+        ? filtrados.map(comentario => {
+            return (
+              <ListGroup.Item
+                className='comentario'
+                onMouseEnter={() => setHoveredItemId(comentario.id)}
+                onMouseLeave={() => setIsHovering(null)}
+                key={comentario.id}>
+                <div className='row'>
+                  <p className='comentario-name'>{comentario.name}</p>
+
+                  <p className='comentario-comment'>
+                    {comentario.comment}
+                  </p>
+                </div>
+                {hoveredItemId === comentario.id && (
+                  <button
+                    className='btn btn-danger btn-sm'
+                    onClick={() => onRemoveComment(comentario.id)}>
+                    Excluir
+                  </button>
+                )}
+              </ListGroup.Item>
+            );
+          })
+        : filtrados.slice(0, 3).map(comentario => {
+            return (
+              <ListGroup.Item
+                className='comentario'
+                onClick={() => setHoveredItemId(comentario.id)}
+                onMouseLeave={() => setIsHovering(null)}
+                key={comentario.id}>
+                <div className='row'>
+                  <p className='comentario-name'>{comentario.name}</p>
+
+                  <p className='comentario-comment'>
+                    Estou aqui: {comentario.comment}
+                  </p>
+                </div>
+                {hoveredItemId === comentario.id && (
+                  <button
+                    className='btn btn-danger btn-sm'
+                    onClick={() => onRemoveComment(comentario.id)}>
+                    Excluir
+                  </button>
+                )}
+              </ListGroup.Item>
+            );
+          })}
     </ListGroup>
   );
 }

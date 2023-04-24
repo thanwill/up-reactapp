@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import ListaFilmes from "../components/CardFilmes";
-import Modal from "../components/Modal";
+import Modal from "../components/ModalFilmes";
 import "../global.css";
 import CardCarousel from "../components/CardCarousel";
 import movies from "../data/filmes";
@@ -8,6 +8,9 @@ import Title from "../components/Title/index";
 import ErrorBoundary from '../components/ErrorBoundary/index';
 
 function Catalogo() {
+
+ 
+
   const [filmeSelecionado, setFilme] = useState(null);
   const selecionaFilme = filme => {
     setFilme(filme);

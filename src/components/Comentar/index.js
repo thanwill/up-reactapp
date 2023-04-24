@@ -1,44 +1,50 @@
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Toast } from "react-bootstrap";
 import { useState } from "react";
-import comentarios from "../../data/comentarios";
 
-export default function Comentar({ filme }) {
-
-  const comentariosJSON = JSON.stringify(comentarios);
-  const [comentariosLS, setComentariosLS] = useState(
-    JSON.parse(localStorage.getItem("comentarios")) || []
-  );
-  
-
+export default function Comentar({ filme, onAddComentario, comentarioslista }) {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
-    localStorage.setItem("comentarios", comentariosJSON); // se não tiver comentários no localStorage, adiciona os comentários do arquivo data/comentarios.js
 
-    const newComment = {
-      id: comentariosLS.length + 1,
-      filmeId: filme.id,
-      name: name,
-      comment: comment,
-    };
-
-    if (newComment.nome === "" || newComment.comentario === "") {
-      alert("Preencha todos os campos");
+    if (name.trim() === "" || comment.trim() === "") {
+      setErrorMessage("Por favor, preencha todos os campos.");
+      setShowToast(true);
       return;
-    }else{
-      const updatedComments = [...comentariosLS, newComment];
-      setComentariosLS(updatedComments);
-      localStorage.setItem("comentarios", JSON.stringify(updatedComments));
+    } else {
+      setShowToast(false);
+      const newComment = {
+        id: comentarioslista.length + 1,
+        filmeId: filme.id,
+        name: name,
+        comment: comment,
+      };
+
+      setName("");
+      setComment("");
+      onAddComentario(newComment);
     }
   }
-
 
   return (
     <Form
       onSubmit={handleSubmit}
       className='col-10 offset-1 col-md-10 offset-md-1'>
+        <div className="mt-3 mb-3">
+          
+      <Toast
+        onClose={() => setShowToast(false)}
+        show={showToast}
+        delay={3000}
+        autohide
+        className='toast alert-danger'>
+        <Toast.Body>{errorMessage}</Toast.Body>
+
+      </Toast>
+      </div>
       <Form.Group className='mb-3' controlId='formBasicEmail'>
         <Form.Label>Nome</Form.Label>
         <Form.Control
@@ -60,6 +66,8 @@ export default function Comentar({ filme }) {
       <Button variant='primary' type='submit'>
         Enviar
       </Button>
+      
+
     </Form>
   );
 }
