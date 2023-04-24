@@ -5,6 +5,7 @@ import Erro from "./pages/erro.js";
 import Login from "./pages/login";
 import Planos from "./pages/planos";
 import Cadastrar from "./pages/cadastro";
+import Servidor from "./pages/request";
 
 export default function ConfigRoutes() {
   return (
@@ -14,6 +15,7 @@ export default function ConfigRoutes() {
       <Route path="/logar" element={<Login />} />
       <Route path="/planos" element={<Planos />} />
       <Route path="/cadastrar" element={<Cadastrar />} />
+      <Route path="/requisicao" element={<Servidor />} />
       <Route path="*" element={<Erro />} />
     </Routes>
   );

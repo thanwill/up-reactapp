@@ -1,39 +1,29 @@
-import React, { useState, useEffect} from 'react';
-
+import React, { useState, useEffect } from "react";
+import Title from "../Title";
 
 export default function JsonPost() {
 
-    const [listPosts, setListPosts] = useState([]);
+  const [post, setPost] = useState(null);
 
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'ee0662074dmshf5917dc14a653d7p1df3c7jsnee03e38968e1',
-            'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
-        }
-    };
+  useEffect(() => {
 
-    useEffect(() => {
-        fetch('https://moviesdatabase.p.rapidapi.com/titles')
-            .then(response => response.json())
-            .then(data => setListPosts(data))
-            .cath(error => console.log(error));
-    }, [] );
+    fetch("https://jsonplaceholder.typicode.com/todos/1")
+      .then(response => response.json())
+      .then(data => setPost(data));
 
+  }, []);
 
-    return (
-        <div>
-            <h1>Posts</h1>
-            <ul>
-                {listPosts.map(post => (
-                    <li key={post.id}>
-                        <h2>{post.title}</h2>
-                        <p>{post.body}</p>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-
+  return (
+    <div>
+      <Title title="Json Post" />
+      {post ? (
+            <div>
+                <h1>{post.title}</h1>
+                <p>{post.body}</p>
+            </div>
+        ):(
+            <p>Carregando...</p>
+        ) }
+    </div>
+  );
 }
-

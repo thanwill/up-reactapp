@@ -54,6 +54,11 @@ function Header() {
                   </Link>
                 </li>
                 <li>
+                  <Link className='dropdown-item' to='/requisicao'>
+                    requisição
+                  </Link>
+                </li>
+                <li>
                   <hr className='dropdown-divider' />
                 </li>
                 <li>
