@@ -1,13 +1,13 @@
 import "../global.css";
-import Title from '../components/Title'
+import Title from "../components/Title";
 function Planos() {
-  
   return (
     <main className='conteudo'>
       <div className='row'>
-
-        <Title title={"Conheça nossos planos"} classe={'text-center mb-5'}/>      
         <div className='col-md-8 offset-md-2'>
+          <div className="m-5">
+          <Title title={"Conheça nossos planos"} classe={'text-center mb-5'}/> 
+          </div>
           <div className='row'>
             <div className=' col-10 offset-1 col-md-3'>
               <div className='card mb-4 rounded-3 shadow-sm'>
@@ -20,7 +20,8 @@ function Planos() {
                   </h1>
                   <ul className='list-unstyled mt-3 mb-4'>
                     <li> 1 usuário incluso </li> <li> 2 GB para download </li>
-                    <li> streaming padrão </li> <li> Legendas em vários idiomas </li>
+                    <li> streaming padrão </li>{" "}
+                    <li> Legendas em vários idiomas </li>
                   </ul>
                   <button
                     type='button'
@@ -43,7 +44,8 @@ function Planos() {
                     </small>
                   </h1>
                   <ul className='list-unstyled mt-3 mb-4'>
-                    <li> 3 usuários inclusos </li> <li> 10 GB para download </li>
+                    <li> 3 usuários inclusos </li>{" "}
+                    <li> 10 GB para download </li>
                     <li> Streaming em alta definição </li>{" "}
                     <li> Áudio surround 5.1</li>
                   </ul>
@@ -68,7 +70,8 @@ function Planos() {
                     </small>
                   </h1>
                   <ul className='list-unstyled mt-3 mb-4'>
-                    <li> até 5 perfis de usuário </li> <li> Download ilimitado </li>
+                    <li> até 5 perfis de usuário </li>{" "}
+                    <li> Download ilimitado </li>
                     <li> Diferentes telas </li>
                   </ul>
                   <button
@@ -81,7 +84,11 @@ function Planos() {
             </div>
           </div>
         </div>
-        <Title text={"Ao assinar nosso site de filmes, você terá acesso ilimitado a uma ampla variedade de filmes e séries de sucesso, de diferentes gêneros e épocas, com opções para toda a família. Além disso, atualizamos regularmente nossa biblioteca de conteúdo para garantir que você sempre tenha novidades para assistir. Não perca mais tempo procurando por entretenimento de qualidade, assine agora e desfrute de uma experiência cinematográfica incomparável!"}/>
+        <Title
+          text={
+            "Ao assinar nosso site de filmes, você terá acesso ilimitado a uma ampla variedade de filmes e séries de sucesso, de diferentes gêneros e épocas, com opções para toda a família. Além disso, atualizamos regularmente nossa biblioteca de conteúdo para garantir que você sempre tenha novidades para assistir. Não perca mais tempo procurando por entretenimento de qualidade, assine agora e desfrute de uma experiência cinematográfica incomparável!"
+          }
+        />
       </div>
     </main>
   );

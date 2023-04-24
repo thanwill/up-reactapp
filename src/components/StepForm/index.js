@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Title from "../Title";
 
 const StepForm = () => {
   const [step, setStep] = useState(1);
@@ -12,7 +13,6 @@ const StepForm = () => {
   const [district, setDistrict] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
   const [number, setNumber] = useState("");
   const [complement, setComplement] = useState("");
 
@@ -24,22 +24,35 @@ const StepForm = () => {
     setStep(step - 1);
   };
 
-  useEffect(() => {
-    async function fetchAddress() {
+  // Função para buscar o endereço no ViaCEP
+  async function getAddress() {
+    try {
       const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
       const data = await response.json();
-      setAddress(data);
+      if (data.erro) {
+        console.log("CEP não encontrado");
+      } else {
+        setAddress(data);
+        setStreet(data.logradouro);
+        setDistrict(data.bairro);
+        setCity(data.localidade);
+        setState(data.uf);
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-    if (cep.length === 8) {
-      fetchAddress();
-      console.log(address);
-    }
-  }, [cep]);
+  }
 
   function handleCepChange(event) {
-    setCep(event.target.value.replace(/\D/g, ""));
+    setCep(event.target.value);
   }
+
+  // Chama a função getAddress sempre que o valor do CEP mudar
+  useEffect(() => {
+    if (cep.length === 8) {
+      getAddress();
+    }
+  }, [cep]);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -50,11 +63,14 @@ const StepForm = () => {
   return (
     <div className='continer'>
       <div className='row'>
-        <div className='col-md-6 offset-md-3 mt-5'>
+        <div className='col-10 offset-1 col-md-4 offset-md-4 pt-5 pb-5'>
           <form onSubmit={handleSubmit}>
             {step === 1 && (
               <fieldset>
-                <h2 className='mb-4'>Dados pessoais</h2>
+                <Title
+                  title={"Dados pessoais"}
+                  text={"Queremos te conhecer melhor."}
+                />
                 <input
                   type='text'
                   onChange={e => setName(e.target.value)}
@@ -82,7 +98,8 @@ const StepForm = () => {
               </fieldset>
             )}
 
-            {step === 2 && (
+            {/*
+            step === 2 && (
               <fieldset>
                 <h2>Seu plano</h2>
                 <h3>Defina a melhor opção para vocês.</h3>
@@ -123,12 +140,15 @@ const StepForm = () => {
                   Next
                 </button>
               </fieldset>
-            )}
+            )
+            */}
 
-            {step === 3 && (
+            {step === 2 && (
               <fieldset>
-                <h2>Seu endereço</h2>
-                <h3>Informe seu CEP.</h3>
+                <Title
+                  title={"Informe seu CEP"}
+                  text={"Válido para território nacional."}
+                />
 
                 <input
                   type='text'
@@ -137,13 +157,13 @@ const StepForm = () => {
                   onChange={handleCepChange}
                 />
 
-                {cep.length === 8 && (
+                {cep.length === 8 &&   (
                   <>
                     <input
                       type='text'
                       onChange={e => setStreet(e.target.value)}
-                      value={address.logradouro}
-                      placeholder='Logradouro'                      
+                      value={address.logradouro || ""}
+                      placeholder='Logradouro'
                     />
                     <input
                       type='text'
@@ -152,23 +172,23 @@ const StepForm = () => {
                     />
                     <input
                       type='text'
-                      value={address.bairro}
+                      value={address.bairro || ""}
                       placeholder='Bairro'
                       onChange={e => setDistrict(e.target.value)}
                     />
                     <input
                       type='text'
-                      value={address.localidade}
+                      value={address.localidade || ""}
                       placeholder='Cidade'
                       onChange={e => setCity(e.target.value)}
                     />
                     <input
                       type='text'
-                      value={address.uf}
+                      value={address.uf || ""}
                       placeholder='Estado'
                       onChange={e => setState(e.target.value)}
                     />
-                                        
+
                     <input
                       type='text'
                       placeholder='Complemento'
@@ -186,10 +206,12 @@ const StepForm = () => {
               </fieldset>
             )}
 
-            {step === 4 && (
+            {step === 3 && (
               <fieldset>
-                <h2>Confirmação</h2>
-                <h3>Confirme seus dados.</h3>
+                <Title
+                  title={"Pronto!"}
+                  text={"Aqui vai um resumo para você."}
+                />
 
                 <p>Nome: {name}</p>
                 <p>Sobrenome: {company}</p>
@@ -201,7 +223,6 @@ const StepForm = () => {
                 <p>Bairro: {district}</p>
                 <p>Cidade: {city}</p>
                 <p>Estado: {state}</p>
-                <p>País: {country}</p>
                 <p>Complemento: {complement}</p>
 
                 <button type='button' onClick={handlePreviousStep}>
