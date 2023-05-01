@@ -42,7 +42,7 @@ const ListaFilmes = () => {
   const [filmeSelecionado, setFilmeSelecionado] = useState({});
   const [assistido, setAssistido] = useState(filmeSelecionado.assistido);
   const [searchTerm, setSearchTerm] = useState("");
-  const handleSearch = (event) => {
+  const handleSearch = event => {
     setSearchTerm(event.target.value);
   };
 
@@ -79,13 +79,11 @@ const ListaFilmes = () => {
       </div>
       <div className='row'>
         {isLoading ? (
-          <div className='col-12 col-md-4 mt-5'>
-            <div className='card'>
-              <div className='card-body'>
-                <h5 className='card-title'>Carregando...</h5>
-              </div>
-            </div>
+          <div class="d-flex justify-content-center mt-5">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
           </div>
+        </div>
         ) : filmes.length > 0 ? (
           filmes
             .sort((a, b) => a.titulo.localeCompare(b.titulo))
