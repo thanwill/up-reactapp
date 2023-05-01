@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import Comentar from "../Comentar";
 import "./modal.css";
 
 export default function ModalFilme({filmeId}) {
@@ -46,12 +47,13 @@ export default function ModalFilme({filmeId}) {
         <Modal.Body>
           I will not close if you click outside me. Don't even try to press
           escape key.
+          <Comentar/>
         </Modal.Body>
+
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
             Close
           </Button>
-          <Button variant='primary'>Understood</Button>
         </Modal.Footer>
       </Modal>
     </>

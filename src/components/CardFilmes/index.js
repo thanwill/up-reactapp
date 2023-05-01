@@ -45,6 +45,11 @@ const ListaFilmes = () => {
   const handleSearch = event => {
     setSearchTerm(event.target.value);
   };
+  const [naoAssistidos, setNaoAssistidos] = useState(false);
+
+  function handleSwitchChange() {
+    setNaoAssistidos(!naoAssistidos);
+  }
 
   useEffect(() => {
     fetch(
@@ -73,23 +78,43 @@ const ListaFilmes = () => {
               value={searchTerm}
               onChange={handleSearch}
             />
-            <Button variant='outline-success'>Pesquisar</Button>
+            {/*
+              <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitch1">
+              <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+            </div>
+               */}
+
+            <div className='custom-control custom-switch'>
+              <input
+                type='checkbox'
+                className='custom-control-input'
+                id='switchAssistidos'
+                onChange={handleSwitchChange}
+              />
+              <label
+                className='custom-control-label'
+                htmlFor='switchAssistidos'>
+                {naoAssistidos ? "Não assistidos" : "Todos"}
+              </label>
+            </div>
           </Form>
         </div>
       </div>
       <div className='row'>
         {isLoading ? (
-          <div class="d-flex justify-content-center mt-5">
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+          <div class='d-flex justify-content-center mt-5'>
+            <div class='spinner-border' role='status'>
+              <span class='sr-only'>Loading...</span>
+            </div>
           </div>
-        </div>
         ) : filmes.length > 0 ? (
           filmes
             .sort((a, b) => a.titulo.localeCompare(b.titulo))
             .filter(filme =>
               filme.titulo.toLowerCase().includes(searchTerm.toLowerCase())
             )
+            
             .map(filme => (
               <div className='col-12 col-md-4 mt-5' key={filme.id}>
                 <div className='card'>

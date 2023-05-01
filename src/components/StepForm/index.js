@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Title from "../Title";
-import "../../global.css";
+import "./stepform.css";
+import Cards from "react-credit-cards";
 
 const StepForm = () => {
   const [step, setStep] = useState(1);
@@ -21,6 +22,8 @@ const StepForm = () => {
   const [cardName, setCardName] = useState("");
   const [cardDate, setCardDate] = useState("");
   const [cardCvv, setCardCvv] = useState("");
+
+  const [cardFocus, setCardFocus] = useState("");
 
   const handleNextStep = () => {
     setStep(step + 1);
@@ -76,19 +79,18 @@ const StepForm = () => {
   }
   function formatDateString(dateString) {
     // Remove todos os caracteres não numéricos
-    let numericString = dateString.replace(/\D/g, '');
-  
+    let numericString = dateString.replace(/\D/g, "");
+
     // Adiciona a barra depois dos primeiros 2 dígitos (mês)
     if (numericString.length > 2) {
-      numericString = numericString.slice(0, 2) + '/' + numericString.slice(2);
+      numericString = numericString.slice(0, 2) + "/" + numericString.slice(2);
     }
-  
+
     // Limita a string a 7 caracteres (mm/yyyy)
     numericString = numericString.slice(0, 7);
-  
+
     return numericString;
   }
-  
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -110,9 +112,8 @@ const StepForm = () => {
       cardNumber,
       cardName,
       cardDate,
-      cardCvv
+      cardCvv,
     });
-    
   };
 
   return (
@@ -148,7 +149,7 @@ const StepForm = () => {
                 />
 
                 <button type='button' onClick={handleNextStep}>
-                  Next
+                  Próximo
                 </button>
               </fieldset>
             )}
@@ -208,59 +209,82 @@ const StepForm = () => {
                 )}
 
                 <button type='button' onClick={handlePreviousStep}>
-                  Previous
+                  Voltar
                 </button>
                 <button type='button' onClick={handleNextStep}>
-                  Next
+                  Próximo
                 </button>
               </fieldset>
             )}
 
             {step === 3 && (
-              <fieldset>
+              <>
                 <Title
                   title={"Forma de pagamento"}
                   text={"Informe os dados do cartão."}
                 />
 
-                <input
-                  type='text'
-                  placeholder='Nome no cartão'
-                  onChange={e => setCardName(e.target.value)}
-                />
-                <input
-                  type='number'
-                  placeholder='Número do cartão'
-                  onChange={e => setCardNumber(e.target.value)}
-                />
-                <input
-                  type='text'
-                  placeholder='01/2020'
-                  onChange={e => setCardDate(formatDateString(e.target.value))}
-
-                  onBlur={e => {
-                    if (!isValidDate(e.target.value)) {
-                      setCardDate('');
+                <div className='mt-5 mb-5'>
+                  <Cards
+                    cvc={cardCvv}
+                    expiry={cardDate}
+                    name={cardName}
+                    number={cardNumber}
+                    focused={cardFocus}
+                  />
+                </div>
+                <fieldset>
+                  <input
+                    type='text'
+                    placeholder='Nome no cartão'
+                    onChange={e => setCardName(e.target.value)}
+                    onFocus={e => setCardFocus(e.target.name)}
+                  />
+                  <input
+                    type='number'
+                    placeholder='Número do cartão'
+                    onChange={e => setCardNumber(e.target.value)}
+                    onFocus={e => setCardFocus(e.target.name)}
+                    maxLength={16}
+                    minLength={16}
+                  />
+                  <input
+                    type='text'
+                    placeholder='01/2020'
+                    onChange={e =>
+                      setCardDate(formatDateString(e.target.value))
                     }
-                  }}
-                
-                />
-                
-                <input
-                  type='password'
-                  placeholder='CVV'
-                  onChange={e => setCardCvv(e.target.value)}
-                  // oculta o setCardCvv
-                  maxLength={3}
-                />
+                    onFocus={e => setCardFocus(e.target.name)}
+                    onBlur={e => {
+                      if (!isValidDate(e.target.value)) {
+                        setCardDate("");
+                      }
+                    }}
+                    maxLength={7}
+                  />
 
-                <button type='button' onClick={handlePreviousStep}>
-                  Previous
-                </button>
-                <button type='button' onClick={handleNextStep}>
-                  Next
-                </button>
-              </fieldset>
+                  <select onChange={e => setPayment(e.target.value)}>
+                    <option value='credit'>Crédito</option>
+                    <option value='debit'>Débito</option>
+                  </select>
+
+                  <input
+                    type='password'
+                    placeholder='CVV'
+                    onChange={e => setCardCvv(e.target.value)}
+                    onFocus={e => setCardFocus(e.target.name)}
+                    // oculta o setCardCvv
+                    maxLength={3}
+                  />
+
+                  <button type='button' onClick={handlePreviousStep}>
+                    Voltar
+                  </button>
+                  <button type='button' onClick={handleNextStep}>
+                    Próximo
+                  </button>
+                </fieldset>
+              </>
             )}
 
             {step === 4 && (
@@ -287,20 +311,19 @@ const StepForm = () => {
                 <p>Estado: {state}</p>
                 <p>Complemento: {complement}</p>
 
-                <Title
-                  title={"Faturamento"}
-                  text={"E aqui está o cartão dos próximos faturamentos."}
-                />
+                <Title title={"Faturamento"} classe={"mt-5 mb-5"} />
 
-                <p>Nome no cartão: {cardName}</p>
-                <p>Número do cartão: {cardNumber}</p>
-                <p>Validade: {cardDate}</p>
-                <p>CVV: {cardCvv}</p>
+                <div className='text-left'>
+                  <p>Nome no cartão: {cardName}</p>
+                  <p>Número do cartão: {cardNumber}</p>
+                  <p>Validade: {cardDate}</p>
+                  <p>CVV: {cardCvv}</p>
+                </div>
 
                 <button type='button' onClick={handlePreviousStep}>
-                  Previous
+                  Voltar
                 </button>
-                <button type='submit'>Submit</button>
+                <button type='submit'>Enviar</button>
               </fieldset>
             )}
           </form>

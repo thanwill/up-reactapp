@@ -14,35 +14,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-button{
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 1rem;
-}
-p{
-  font-size: 1.2rem;
-  color: #333;
-}
-small{
-  font-size: 0.8rem;
-  color: #999;
-}
-.comment-wrapper{
-  margin: 1rem 0;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 1rem;
-}
-.comment-wrapper:hover{
-  box-shadow: 0 0 10px #ccc;
-}
-.comment-actions{
-  margin-top: 1rem;
-}
