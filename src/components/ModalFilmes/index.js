@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import "./modal.css";
 
-export default function ModalFilme({ filmeId }) {
+export default function ModalFilme({filmeId}) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
   const [filme, setFilme] = useState({});
   const options = {
     method: "GET",
@@ -16,7 +17,7 @@ export default function ModalFilme({ filmeId }) {
 
   useEffect(() => {
     fetch(
-      `https://my-json-server.typicode.com/marycamila184/movies/movies/${filmeId}`,
+      `https://my-json-server.typicode.com/marycamila184/movies/movies/80`,
       options
     )
       .then(response => response.json())
@@ -26,7 +27,7 @@ export default function ModalFilme({ filmeId }) {
       .catch(error => {
         console.log(error);
       });
-  });
+  },[]);
 
   // mostra mais ou menos da sinopse
   // eslint-disable-next-line no-unused-vars
@@ -34,15 +35,13 @@ export default function ModalFilme({ filmeId }) {
 
   return (
     <>
-      
-
       <Modal
         show={show}
         onHide={handleClose}
         backdrop='static'
         keyboard={false}>
         <Modal.Header closeButton>
-          <Modal.Title>{filme.titulo}</Modal.Title>
+          <Modal.Title>Modal title</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           I will not close if you click outside me. Don't even try to press

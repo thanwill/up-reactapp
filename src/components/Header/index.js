@@ -66,11 +66,7 @@ function Header() {
                     jogos
                   </Link>
                 </li>
-                <li>
-                  <Link className='dropdown-item' to='/api'>
-                    filmes
-                  </Link>
-                </li>
+                
               </ul>
             </li>
             <li className='nav-item'>

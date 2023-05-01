@@ -1,6 +1,5 @@
-import { React, useState } from "react";
+import { React } from "react";
 import ListaFilmes from "../components/CardFilmes";
-import ModalFilme from "../components/ModalFilmes";
 import "../global.css";
 import CardCarousel from "../components/CardCarousel";
 import Title from "../components/Title/index";
@@ -8,10 +7,6 @@ import ErrorBoundary from "../components/ErrorBoundary/index";
 
 function Catalogo() {
 
-  const [filmeSelecionado, setFilme] = useState();
-  const selecionaFilme = filme => {
-    setFilme(filme);
-  };
 
   return (
     <ErrorBoundary>
@@ -22,36 +17,9 @@ function Catalogo() {
             classe={"text-center m-5"}
           />
           <CardCarousel/>
-          <ListaFilmes onMovieSelect={selecionaFilme} />
+          <ListaFilmes />
         </div>
-        {filmeSelecionado && <ModalFilme filmeId={filmeSelecionado} />}
-        <div>
-          <div id='carouselExample' className='carousel slide'>
-            <div className='carousel-inner'>
-              <div className='carousel-item'></div>
-            </div>
-            <button
-              className='carousel-control-prev'
-              type='button'
-              data-bs-target='#carouselExample'
-              data-bs-slide='prev'>
-              <span
-                className='carousel-control-prev-icon'
-                aria-hidden='true'></span>
-              <span className='visually-hidden'>Previous</span>
-            </button>
-            <button
-              className='carousel-control-next'
-              type='button'
-              data-bs-target='#carouselExample'
-              data-bs-slide='next'>
-              <span
-                className='carousel-control-next-icon'
-                aria-hidden='true'></span>
-              <span className='visually-hidden'>Next</span>
-            </button>
-          </div>
-        </div>
+        
       </main>
     </ErrorBoundary>
   );

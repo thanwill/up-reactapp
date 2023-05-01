@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Title from "../Title";
+import "../../global.css";
 
 const StepForm = () => {
   const [step, setStep] = useState(1);
@@ -15,6 +16,11 @@ const StepForm = () => {
   const [state, setState] = useState("");
   const [number, setNumber] = useState("");
   const [complement, setComplement] = useState("");
+  const [payment, setPayment] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [cardDate, setCardDate] = useState("");
+  const [cardCvv, setCardCvv] = useState("");
 
   const handleNextStep = () => {
     setStep(step + 1);
@@ -54,10 +60,59 @@ const StepForm = () => {
     }
   }, [cep]);
 
+  function isValidDate(dateString) {
+    // Verifica se a data está no formato "mm/yyyy"
+    if (!/^\d{2}\/\d{4}$/.test(dateString)) {
+      return false;
+    }
+
+    // Separa o mês e o ano em variáveis separadas
+    const [month, year] = dateString.split("/");
+
+    // Verifica se o mês e o ano são válidos
+    const now = new Date();
+    const inputDate = new Date(year, parseInt(month, 10) - 1, 1);
+    return inputDate > now;
+  }
+  function formatDateString(dateString) {
+    // Remove todos os caracteres não numéricos
+    let numericString = dateString.replace(/\D/g, '');
+  
+    // Adiciona a barra depois dos primeiros 2 dígitos (mês)
+    if (numericString.length > 2) {
+      numericString = numericString.slice(0, 2) + '/' + numericString.slice(2);
+    }
+  
+    // Limita a string a 7 caracteres (mm/yyyy)
+    numericString = numericString.slice(0, 7);
+  
+    return numericString;
+  }
+  
+
   const handleSubmit = event => {
     event.preventDefault();
     // Envie os dados do formulário para o servidor aqui
     alert("Formulário enviado com sucesso!");
+    console.log({
+      name,
+      company,
+      email,
+      phone,
+      cep,
+      street,
+      district,
+      city,
+      state,
+      number,
+      complement,
+      payment,
+      cardNumber,
+      cardName,
+      cardDate,
+      cardCvv
+    });
+    
   };
 
   return (
@@ -98,51 +153,6 @@ const StepForm = () => {
               </fieldset>
             )}
 
-            {/*
-            step === 2 && (
-              <fieldset>
-                <h2>Seu plano</h2>
-                <h3>Defina a melhor opção para vocês.</h3>
-
-                <select>
-                  <option selected='selected' disabled>
-                    Plano
-                  </option>
-                  <option value={"free"}>Free</option>
-                  <option value={"pro"}>Pro</option>
-                  <option value={"familia"}>Família</option>
-                </select>
-
-                <select>
-                  <option selected='selected' disabled>
-                    Pagamento
-                  </option>
-                  <option value={"pix"}>PIX</option>
-                  <option value={"debito"}>Débito</option>
-                  <option value={"credito"}>Crédito</option>
-                  <option value={"desconto"}>Cupom</option>
-                </select>
-
-                <select>
-                  <option selected='selected' disabled>
-                    Dispositivos
-                  </option>
-                  <option value={"1"}>1 dispositivo</option>
-                  <option value={"2"}>2 dispositivos</option>
-                  <option value={"3"}>Sem restrições</option>
-                </select>
-
-                <button type='button' onClick={handlePreviousStep}>
-                  Previous
-                </button>
-
-                <button type='button' onClick={handleNextStep}>
-                  Next
-                </button>
-              </fieldset>
-            )
-            */}
-
             {step === 2 && (
               <fieldset>
                 <Title
@@ -157,7 +167,7 @@ const StepForm = () => {
                   onChange={handleCepChange}
                 />
 
-                {cep.length === 8 &&   (
+                {cep.length === 8 && (
                   <>
                     <input
                       type='text'
@@ -209,14 +219,66 @@ const StepForm = () => {
             {step === 3 && (
               <fieldset>
                 <Title
+                  title={"Forma de pagamento"}
+                  text={"Informe os dados do cartão."}
+                />
+
+                <input
+                  type='text'
+                  placeholder='Nome no cartão'
+                  onChange={e => setCardName(e.target.value)}
+                />
+                <input
+                  type='number'
+                  placeholder='Número do cartão'
+                  onChange={e => setCardNumber(e.target.value)}
+                />
+                <input
+                  type='text'
+                  placeholder='01/2020'
+                  onChange={e => setCardDate(formatDateString(e.target.value))}
+
+                  onBlur={e => {
+                    if (!isValidDate(e.target.value)) {
+                      setCardDate('');
+                    }
+                  }}
+                
+                />
+                
+                <input
+                  type='password'
+                  placeholder='CVV'
+                  onChange={e => setCardCvv(e.target.value)}
+                  // oculta o setCardCvv
+                  maxLength={3}
+                />
+
+                <button type='button' onClick={handlePreviousStep}>
+                  Previous
+                </button>
+                <button type='button' onClick={handleNextStep}>
+                  Next
+                </button>
+              </fieldset>
+            )}
+
+            {step === 4 && (
+              <fieldset>
+                <Title
                   title={"Pronto!"}
-                  text={"Aqui vai um resumo para você."}
+                  text={"Aqui vai um resumo dos seus dados."}
                 />
 
                 <p>Nome: {name}</p>
                 <p>Sobrenome: {company}</p>
                 <p>Email: {email}</p>
                 <p>Telefone: {phone}</p>
+
+                <Title
+                  title={"Endereço"}
+                  text={"Este foi seu endereço cadastrado."}
+                />
                 <p>CEP: {cep}</p>
                 <p>Logradouro: {street}</p>
                 <p>Número: {number}</p>
@@ -224,6 +286,16 @@ const StepForm = () => {
                 <p>Cidade: {city}</p>
                 <p>Estado: {state}</p>
                 <p>Complemento: {complement}</p>
+
+                <Title
+                  title={"Faturamento"}
+                  text={"E aqui está o cartão dos próximos faturamentos."}
+                />
+
+                <p>Nome no cartão: {cardName}</p>
+                <p>Número do cartão: {cardNumber}</p>
+                <p>Validade: {cardDate}</p>
+                <p>CVV: {cardCvv}</p>
 
                 <button type='button' onClick={handlePreviousStep}>
                   Previous
