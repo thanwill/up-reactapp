@@ -6,6 +6,7 @@ import Login from "./pages/login";
 import Planos from "./pages/planos";
 import Cadastrar from "./pages/cadastro";
 import Servidor from "./pages/request";
+import FilmesApi from './components/FilmesApi/index';
 
 export default function ConfigRoutes() {
   return (
@@ -16,6 +17,7 @@ export default function ConfigRoutes() {
       <Route path="/planos" element={<Planos />} />
       <Route path="/cadastrar" element={<Cadastrar />} />
       <Route path="/requisicao" element={<Servidor />} />
+      <Route path="/api" element={<FilmesApi />} />
       <Route path="*" element={<Erro />} />
     </Routes>
   );
