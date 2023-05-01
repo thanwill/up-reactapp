@@ -1,17 +1,17 @@
 import { React, useState } from "react";
 import ListaFilmes from "../components/CardFilmes";
-import Modal from "../components/ModalFilmes";
+import ModalFilme from "../components/ModalFilmes";
 import "../global.css";
 import CardCarousel from "../components/CardCarousel";
 import Title from "../components/Title/index";
 import ErrorBoundary from "../components/ErrorBoundary/index";
 
 function Catalogo() {
-  const [filmeSelecionado, setFilme] = useState(null);
+
+  const [filmeSelecionado, setFilme] = useState();
   const selecionaFilme = filme => {
     setFilme(filme);
   };
-
 
   return (
     <ErrorBoundary>
@@ -24,7 +24,7 @@ function Catalogo() {
           <CardCarousel/>
           <ListaFilmes onMovieSelect={selecionaFilme} />
         </div>
-        {filmeSelecionado && <Modal filmeId={filmeSelecionado} />}
+        {filmeSelecionado && <ModalFilme filmeId={filmeSelecionado} />}
         <div>
           <div id='carouselExample' className='carousel slide'>
             <div className='carousel-inner'>

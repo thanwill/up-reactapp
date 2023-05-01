@@ -1,10 +1,13 @@
+import { Button } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import "../../global.css";
 
 const ListaFilmes = ({ onMovieSelect }) => {
-
   const [filmes, setFilmes] = useState([]);
-  
+  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
   const options = {
     method: "GET",
     headers: {
@@ -45,13 +48,16 @@ const ListaFilmes = ({ onMovieSelect }) => {
               <div className='card-body'>
                 <h5 className='card-title'>{filme.titulo}</h5>
                 <button
-                  onClick={() => onMovieSelect(filme.id)}
                   type='button'
-                  className='btn btn-primary'
-                  data-bs-toggle='modal'
-                  data-bs-target='#staticBackdrop'>
+                  class='btn btn-primary'
+                  data-toggle='modal'
+                  onClick={() => onMovieSelect(Number(filme.id))}
+                  data-target='#exampleModalCenter'>
                   Detalhes
                 </button>
+                <Button variant='primary' onClick={handleShow}>
+                  Launch static backdrop modal
+                </Button>
               </div>
             </div>
           </div>

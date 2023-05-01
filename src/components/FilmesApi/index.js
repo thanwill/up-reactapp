@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function FilmesApi() {
   const [filmes, setFilmes] = useState([]);
+  const [filme, setFilme] = useState([]);
 
   const options = {
     method: "GET",
@@ -24,7 +25,29 @@ export default function FilmesApi() {
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  });
+
+  useEffect(() => {
+    
+    // cria um fetch com o id do filme 
+
+    fetch(
+      `https://my-json-server.typicode.com/marycamila184/movies/movies/80`,
+      options
+    )
+      .then(response => response.json())
+      .then(response => {
+        setFilme(response);
+      }
+      )
+      .catch(error => {
+        console.log(error);
+      }
+      );      
+    
+  });
+
+  console.log(filme);
 
   return (
     <div>
