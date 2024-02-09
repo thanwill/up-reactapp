@@ -1,5 +1,12 @@
-header{
-    margin: auto;
-    min-height: 15vh;
-    font-size: larger;
-  }
+header {
+  margin: auto;
+  min-height: 15vh;
+  font-size: larger;
+}
+.nav-link{
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  text-decoration: none;
+  padding: 0 1em;
+}

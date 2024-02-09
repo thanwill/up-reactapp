@@ -1,8 +1,6 @@
-import { useLocation } from "react-router-dom";
 import "./footer.css";
 export default function Footer() {
   const data = new Date();
-  const location = useLocation();
 
   return (
     <footer className='d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top navbar-fixed-bottom'>
@@ -23,7 +21,7 @@ export default function Footer() {
             className='text-muted'
             target='blank'
             href='https://wa.me/5541987233861'>
-            <i class='bi bi-whatsapp'></i>
+            <i className='bi bi-whatsapp'></i>
           </a>
         </li>
         <li className='ms-3'>
@@ -31,7 +29,7 @@ export default function Footer() {
             className='text-muted'
             target='blank'
             href='https://www.linkedin.com/in/jonathanwillian/'>
-            <i class='bi bi-linkedin'></i>
+            <i className='bi bi-linkedin'></i>
           </a>
         </li>
         <li className='ms-3'>
@@ -39,7 +37,7 @@ export default function Footer() {
             className='text-muted'
             target='blank'
             href='https://twitter.com/JONATHANWILLlAN'>
-            <i class='bi bi-twitter'></i>
+            <i className='bi bi-twitter'></i>
           </a>
         </li>
       </ul>

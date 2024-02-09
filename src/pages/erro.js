@@ -1,11 +1,12 @@
 import React from "react";
+import Title from "../components/Title";
 
 function Inicio() {
     const imagem = './assets/image/imagem-erro.png';
   return (
-    <div className="conteudo text-center pt-5">
+    <div className="text-center pt-5">
         <img src={imagem} alt="Icone indicando moça trabalhando em um computador enquanto a página carrega." srcset="" />
-        <h1 className="text-danger-emphasis">Aguarde, página em construção.</h1>
+        <Title title={'Aguarde, página em construção...'} classe={'text-center m-5'}/>
     </div>
   );
 }

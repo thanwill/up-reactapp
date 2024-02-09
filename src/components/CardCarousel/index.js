@@ -1,16 +1,17 @@
 import { Carousel, Card } from "react-bootstrap";
 import './cardcarousel.css'
-function CardCarousel({ categorias, onMovieSelect }) {
+import categories from "../../data/categorias";
+function CardCarousel({ onMovieSelect }) {
   return (
     <Carousel>
-      {categorias.map(categoria => (
-        <Carousel.Item className='pt-3' onLoad={() => onMovieSelect(categoria)}>
+      {categories.map(categoria => (
+        <Carousel.Item className='pt-3' onLoad={() => onMovieSelect(categoria)} key={categoria.id}>
           <Card>
             <Card.Body>
               <Card.Title>
                 <div className='row'>
-                  <div class='text-center'>
-                    <i class={categoria.icon}></i>                    
+                  <div className='text-center' >
+                    <i className={categoria.icon}></i>                    
                     {categoria.tipo}
                   </div>
                 </div>
